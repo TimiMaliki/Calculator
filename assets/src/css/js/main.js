@@ -12,8 +12,8 @@ class Calculator {
         this.operation = undefined
     }
 
-    delete(del) {
-
+    delete() {
+       this.currentOperand = this.currentOperand.toString().slice(0,-1)
     }
 
     appendNumber(number) {
@@ -56,10 +56,31 @@ class Calculator {
        this.operation = undefined
        this.previousOperand = ''
     }
-
+   getDisplayNumber(number){
+       const stringNumber = number.tostring()
+       const integerDigits = parsefloat(stringNumber.split('.')[0])
+       const decimalDigits = parsefloat(stringNumber.split('.')[1])
+       let integerDisplay
+       if(isNaN(integerDigits)){
+           integerDisplay = ''
+       } else {
+           integerDisplay = integerDigits.toLocalString('en',{
+               maximumFractionDigits: 0
+           })
+       }
+       if(decimalDigits !=null){
+           return `${integerDisplay} ${decimalDigits}`
+       }
+       else{
+           return integerDisplay
+       }
+   }
     updateDisplay() {
         this.currentOperandTextElement.innerText = this.currentOperand
-        this.previousOperandTextElement.innerText = this.previousOperand
+            this.previousOperandTextElement.innerText =this.previousOperand
+         
+       
+    
     }
 }
 
@@ -84,13 +105,25 @@ numberButtons.forEach(button => {
         calculator.updateDisplay()
     })
 })
+
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.innerText)
         calculator.updateDisplay()
     })
 })
+
 equalsButton.addEventListener('click', button =>{
     calculator.compute()
+    calculator.updateDisplay()
+})
+
+allClearButton.addEventListener('click', button =>{
+    calculator.clear()
+    calculator.updateDisplay()
+})
+
+deleteButton.addEventListener('click', button =>{
+    calculator.delete()
     calculator.updateDisplay()
 })
