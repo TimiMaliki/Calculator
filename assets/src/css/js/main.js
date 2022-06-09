@@ -1,3 +1,39 @@
+class Calculator{
+    constructor(previousOperanTextElement,currentOperanTextElement){
+        this.previousOperanTextElement = previousOperanTextElement
+        this.currentOperanTextElement  = currentOperanTextElement 
+        this.clear()
+    }
+
+        clear(){
+           this.currentOperand = ""
+           this.previousOperand = ""
+           this.operation = "undefined"
+        }
+
+        delete() {
+
+        }
+
+        appendNumber(number){
+
+        }
+
+        chooseOperation(operation){
+
+        }
+
+        compute(){
+
+        }
+        
+   updateDisplay(){
+
+}
+    }
+
+
+
 const numberButtons = document.querySelectorAll('[data-number]');
 const operationButtons = document.querySelectorAll('[data-operation]');
 const equalButtons = document.querySelector('data-operation');
